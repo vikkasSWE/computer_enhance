@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cargo",
+			"command": "test",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "Listing All"
+		},
+		{
+			"type": "cargo",
+			"command": "test",
+			"args": [
+				"listing_37",
+				"--",
+				"--nocapture"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "Listing 37"
+		},
+		{
+			"type": "cargo",
+			"command": "test",
+			"args": [
+				"listing_38",
+				"--",
+				"--nocapture"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "Listing 38"
+		}
+	]
+}
