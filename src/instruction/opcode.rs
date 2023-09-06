@@ -14,7 +14,7 @@ impl Display for OpCode {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let res = match self {
             OpCode::MOV(MovType::RegisterMemoryToFromRegister) => "100010",
-            OpCode::MOV(MovType::ImmediateToRegister) => "100010",
+            OpCode::MOV(MovType::ImmediateToRegister) => "001011",
         };
 
         write!(f, "{res}")
@@ -23,7 +23,7 @@ impl Display for OpCode {
 
 impl OpCode {
     pub fn read_op_code(byte: u8) -> OpCode {
-        // println!("Failed to parse OpCode: {byte:b}");
+        println!("RAW OpCode: {byte:b}");
 
         match byte >> 2 {
             0b100010 => OpCode::MOV(MovType::RegisterMemoryToFromRegister),

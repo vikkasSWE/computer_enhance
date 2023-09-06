@@ -1,6 +1,6 @@
 use std::fmt::{Binary, Display};
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Value {
     Short(u8),
     Wide(u16),
@@ -25,7 +25,7 @@ impl Binary for Value {
 }
 
 impl Value {
-    pub fn from(w: bool, bytes: Vec<u8>) -> Self {
+    pub fn from(w: bool, bytes: &[u8]) -> Self {
         if w {
             Self::Wide(u16::from_le_bytes([bytes[0], bytes[1]]))
         } else {
@@ -34,7 +34,7 @@ impl Value {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Register {
     AL,
     CL,
@@ -142,14 +142,17 @@ impl Register {
             Register::CL => "cl".to_string(),
             Register::DL => "dl".to_string(),
             Register::BL => "bl".to_string(),
+
             Register::AH => "ah".to_string(),
             Register::CH => "ch".to_string(),
             Register::DH => "dh".to_string(),
             Register::BH => "bh".to_string(),
+
             Register::AX => "ax".to_string(),
             Register::CX => "cx".to_string(),
             Register::DX => "dx".to_string(),
             Register::BX => "bx".to_string(),
+
             Register::SP => "sp".to_string(),
             Register::BP => "bp".to_string(),
             Register::SI => "si".to_string(),

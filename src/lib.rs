@@ -18,7 +18,10 @@ pub fn dissassemble(bytes: Vec<u8>) -> Result<String, Box<dyn Error>> {
         let instruction_bytes = bytes[offset..].to_vec();
         let Ok(instruction) = Instruction::decode(&instruction_bytes) else {break};
 
-        offset += 2;
+        println!("{instruction}");
+        println!();
+
+        offset += instruction.get_offset();
 
         res.push_str(&instruction.to_string())
     }
