@@ -3,7 +3,7 @@ use crate::{mode::Mode, register::Register};
 #[derive(Debug)]
 pub struct RegisterMemoryToFromRegister {
     d: bool,
-    w: bool,
+    _w: bool,
     mode: Mode,
     reg: Register,
     rm: Register,
@@ -28,7 +28,7 @@ impl RegisterMemoryToFromRegister {
 
         Self {
             d,
-            w,
+            _w: w,
             mode,
             reg,
             rm,

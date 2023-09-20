@@ -43,7 +43,6 @@ impl Instruction {
         match self {
             Instruction::RegisterMemoryToFromRegister(i) => i.offset(),
             Instruction::ImmediateToRegister(i) => i.offset(),
-            _ => unimplemented!(),
         }
     }
 
@@ -51,7 +50,6 @@ impl Instruction {
         match self {
             Instruction::RegisterMemoryToFromRegister(i) => i.to_string(),
             Instruction::ImmediateToRegister(i) => i.to_string(),
-            _ => unimplemented!(),
         }
     }
 }
