@@ -3,6 +3,9 @@ use std::error::Error;
 use instruction::Instruction;
 
 mod instruction;
+mod mode;
+mod mov;
+mod register;
 mod tests;
 
 pub fn dissassemble(bytes: Vec<u8>) -> Result<String, Box<dyn Error>> {
@@ -18,10 +21,10 @@ pub fn dissassemble(bytes: Vec<u8>) -> Result<String, Box<dyn Error>> {
         let instruction_bytes = bytes[offset..].to_vec();
         let Ok(instruction) = Instruction::decode(&instruction_bytes) else {break};
 
-        println!("{instruction}");
+        println!("{instruction:?}");
         println!();
 
-        offset += instruction.get_offset();
+        offset += instruction.offset();
 
         res.push_str(&instruction.to_string())
     }
