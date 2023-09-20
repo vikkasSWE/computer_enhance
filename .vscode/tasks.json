@@ -51,6 +51,20 @@
 			],
 			"group": "build",
 			"label": "Listing 39"
+		},
+		{
+			"type": "cargo",
+			"command": "test",
+			"args": [
+				"listing_40",
+				"--",
+				"--nocapture"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "Listing 40"
 		}
 	]
 }

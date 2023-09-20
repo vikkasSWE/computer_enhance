@@ -1,9 +1,10 @@
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mode {
     Mem,
     Reg,
     Mem8,
     Mem16,
+    DirectAddress,
 }
 impl Mode {
     pub fn decode(bits: u8) -> Self {

@@ -109,6 +109,7 @@ impl Register {
         mode: Mode,
         disp_lo: Option<u8>,
         disp_hi: Option<u8>,
+        w: bool,
     ) -> String {
         match mode {
             Mode::Mem => match self {
@@ -122,7 +123,15 @@ impl Register {
                 Register::BH | Register::DI => "[bx]".to_string(),
             },
             Mode::Mem8 => {
-                let d8 = disp_lo.unwrap();
+                let d8 = if w {
+                    let d8 = disp_lo.unwrap() as i8;
+                    let d8 = d8 as i16;
+                    let d8 = d8 as i8;
+                    d8 as u16
+                } else {
+                    disp_lo.unwrap() as u16
+                };
+
                 match self {
                     Register::AL | Register::AX => format!("[bx + si + {d8}]"),
                     Register::CL | Register::CX => format!("[bx + di + {d8}]"),
@@ -149,6 +158,10 @@ impl Register {
             }
 
             Mode::Reg => unreachable!(),
+            Mode::DirectAddress => format!(
+                "[{}]",
+                u16::from_le_bytes([disp_lo.unwrap(), disp_hi.unwrap()])
+            ),
         }
     }
 }
